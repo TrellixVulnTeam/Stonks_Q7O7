@@ -1,0 +1,1 @@
+./PycharmProjects/Stonks/main.py
