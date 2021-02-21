@@ -3,6 +3,7 @@ import pandas_datareader as pdr
 import datetime
 import pandas as pd
 import logging
+import owned
 logging.basicConfig(filename='logging.log', filemode='a',level=logging.INFO)
 
 
@@ -10,21 +11,7 @@ to_d = datetime.datetime.today()
 from_d = to_d - datetime.timedelta(days=10)
 to_d = to_d.strftime('%d-%m-%y')
 
-stocks = {
-    'AAPL': [155.128,4]
-    ,'DBX' : [21.49,24]
-    ,'SPWR' :[ 38.812,29]
-    ,'PYPL': [238.63,3]
-    ,'SQ': [217.63,2]    
-    ,'NIO' : [57.21,15]
-    ,'SONO': [21.199,25]
-    ,'RVLV': [29.6,15]
-    ,'EB': [18.12,31]
-    ,'NET': [84.66,17]
-    ,'PINS': [67.48,10]
-    ,'ABNB': [155.128,16]
-
-} #Stocks History
+stocks = owned.owned
 
 get_data = lambda data :  data[['Close']]
 get_current = lambda data :  int(data[-1:][['Close']].Close)
