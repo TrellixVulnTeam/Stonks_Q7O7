@@ -36,14 +36,18 @@ def rund(stocks,day):
 
     for stock in stocks:
         data = pdr.get_data_yahoo(stock,start=from_d,end=day)
+        
         #History
         actual,quant = stocks[stock]
+        
         #Current & Forecast
         current = get_current(data)
         forecast = get_forecast(data)
+        
         #gain actual
         g_act_abs  = quant * get_abs(current ,actual)
         g_act_pct = get_pct(current,actual)
+        
         #gain_exp
         g_exp_pct = get_pct(forecast,current)
         g_exp_abs = quant * get_abs(forecast , current)
@@ -61,6 +65,7 @@ def rund(stocks,day):
     return pd.DataFrame(lst, columns=colu)
 
 def update_f(filename,to_d):
+    
     try:
         df = pd.read_csv(filename)
     except (pd.errors.EmptyDataError,IOError):
@@ -76,8 +81,10 @@ def update_f(filename,to_d):
         to_d = fix_date(to_d)
         df = df[df['to_d'] != to_d]
         maxdate = df.to_d.max()
+        
         #multiple days missed
         delta = to_d - maxdate
+        
         #loop over the missing days
         for i in range(delta.days + 1):
             day = maxdate + datetime.timedelta(days=i)
