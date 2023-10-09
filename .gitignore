@@ -1,3 +1,6 @@
 
 stonks.csv
 owned.py
+/.idea/*
+/venv/*
+/ipynb_checkpoints/*
